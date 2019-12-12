@@ -1,6 +1,6 @@
 # Scrabble
 
-![tiles](tiles.png")
+![tiles](tiles.png)
 
 
 This is a small program I worked on to develop my skills in Python dictionaries.
