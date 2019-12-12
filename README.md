@@ -1,7 +1,7 @@
 # Scrabble
 
-![tiles](./tiles.png)
-
+<!-- ![tiles](./tiles.png) -->
+<img src="tiles.png" width="100" height="80">
 
 This is a small program I worked on to develop my skills in Python dictionaries.
 
