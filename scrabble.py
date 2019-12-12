@@ -1,5 +1,6 @@
 from PyDictionary import PyDictionary
 # from nltk import wordnet
+import wordlist
 import random
 from bs4 import BeautifulSoup
 
@@ -58,19 +59,47 @@ print(player_words)
 
 def check_word_is_valid(word):
     if dictionary.meaning(word):
-        return "Nice one! The word is in the dictionary."
+        return "Nice one! {} is in the dictionary.".format(word)
     else:
-        return "That word isn't in the dictionary."
+        return "Awww! {} isn't in the dictionary.".format(word)
+
+# alternative version of checking word is valid (useful if we want the program to only return valid words)
+def check_validity(word):
+    if dictionary.meaning(word):
+        return True
+    else:
+        return False
+
 
 #expect "That word isn't in the dictionary."
 print(check_word_is_valid("xxxx"))
 
 #Expect "That's a real word."
-print(check_word_is_valid("Deer"))
+print(check_word_is_valid("soup"))
 
 print(player_words["Player1"])
+
 #Expect "That word isn't in the dictionary."
 print(check_word_is_valid(player_words["Player1"]))
+
+#now that we can create a word (but not necessarily a valid one) and we can check validity, we can combine our functions to create a valid random word. I am playing with a package called wordlist, which might help.
+# generator = wordlist.Generator(player_words["Player1"])
+
+def create_valid_random_word(player):
+    generator = wordlist.Generator(player_words[player])
+    list = []
+    for each in generator.generate(1, 7):
+        if not dictionary.meaning(each):
+            continue
+        list.append(each)
+    return list
+        # print("{each}: {meaning}".format(each=each, meaning=dictionary.meaning(each)))
+
+#so, the next step is to add all the valid words to a list. then create a loop to identify the highest score.
+    # while check_validity(word) == False:
+        # create_word(player)
+
+# print(create_valid_random_word("Player1"))
 
 player_to_points = {}
 
