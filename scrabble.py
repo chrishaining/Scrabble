@@ -1,4 +1,5 @@
 from PyDictionary import PyDictionary
+# from nltk import wordnet
 import random
 from bs4 import BeautifulSoup
 
@@ -54,6 +55,22 @@ print(create_word("Player1"))
 print(create_word("Player2"))
 
 print(player_words)
+
+def check_word_is_valid(word):
+    if dictionary.meaning(word):
+        return "Nice one! The word is in the dictionary."
+    else:
+        return "That word isn't in the dictionary."
+
+#expect "That word isn't in the dictionary."
+print(check_word_is_valid("xxxx"))
+
+#Expect "That's a real word."
+print(check_word_is_valid("Deer"))
+
+print(player_words["Player1"])
+#Expect "That word isn't in the dictionary."
+print(check_word_is_valid(player_words["Player1"]))
 
 player_to_points = {}
 
