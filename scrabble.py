@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 
 dictionary = PyDictionary()
 
-letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Blank"]
-points = [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 4, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10, 0]
+letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+points = [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 4, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10]
 
 letter_to_points = {key:value for key, value in zip(letters, points)}
 
@@ -19,43 +19,53 @@ def score_word(word):
   return point_total
 
 player_to_letters = {"Player1": [], "Player2": []}
- # examples of random
- # random_list = [random.randint(1, 100) for i in range(101)]
+
 def assign_tiles(player):
-     # random_tile = random.choice(letters)
-     player_words = player_to_letters[player]
-     # return player_words
-     while len(player_words) < 7:
+     player_letters = player_to_letters[player]
+     while len(player_letters) < 7:
          random_tile = random.choice(letters)
-         player_words.append(random_tile)
-     return player_words
+         player_letters.append(random_tile)
+     return player_letters
 # print(assign_tiles("Player1"))
 # print(assign_tiles("Player1"))
 assign_tiles("Player1")
 assign_tiles("Player2")
 print(player_to_letters)
 
- #selects a random tile from the list of letters (or should I select from a dictionary, so I get value?)
- # random_tile = random.choice(letters)
+ #creating a word (start by doing this randomly for both players. Later, the parameter player will be unnecessary)
+# This should be a random method. There are then various options on how we could do this:
+# * the program creates a random word. The only check is that it uses letters from the player's assigned letters. So, it could result in nonsense words
+# * the program could do this, along with checking that the word is in PyDictionary/other dictionary package before submitting the word. This would make it very hard to beat the computer. Alternatively, it could submit the word before checking PyDictionary. PyDictionary would then check the word (it would be much easier to beat the computer this way).
+# * A problem using the above methods is that the computer will use all seven letters. In real-life Scrabble, it can be better to use only some of the letters (for example, you might find a six-letter word, but no seven-letter word). One way round this might be an if elif loop. If there is a seven-letter word in Pydictionary, use it; elif there is a six-letter word in Pydictionary, use it; etc. This still leaves the problem that a shorter word might generate more points than a longer one. A way round that - assign each possible word to a new list. At the end of the iteration, check which of the words in the list generates the highest score. Use it. We also have to factor in the possibility of unused tiles. The value of these should be subtracted from the score.
 
- #adds random tile to a list/dictionary
+player_words = {"Player1": "", "Player2": ""}
 
+def create_word(player):
+    player_letters = player_to_letters[player]
+    player_word = ""
+    new_word = random.sample(player_letters, 7)
+    for letter in new_word:
+        player_word += letter
+    # print(new_word)
+    player_words[player] += player_word
+    return player_word
 
-player_to_words = {"Player1": [], "Player2": []}
+print(create_word("Player1"))
+print(create_word("Player2"))
+
+print(player_words)
 
 player_to_points = {}
 
 def update_points_total():
-  for player, words in player_to_words.items():
+  for player, words in player_words.items():
     player_points = 0
     for word in words:
       player_points += score_word(word)
       player_to_points[player] = player_points
 
 def play_word(player, word):
-  player_to_words[player].append(word)
-
-
+  player_words[player].append(word)
 
 # play_word("Player1", "wow")
 # play_word("Player2", "chicken")
