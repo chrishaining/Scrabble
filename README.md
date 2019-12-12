@@ -1,5 +1,8 @@
 # Scrabble
 
+![tiles](tiles.png")
+
+
 This is a small program I worked on to develop my skills in Python dictionaries.
 
 The aim of the program is to randomly assign letters of the alphabet to each player in the game. The player then makes a word using their letters. A word is a valid if:
@@ -16,4 +19,4 @@ If the word is valid, the program calculates how many points the word has. The p
 ## My main learning points from this project
 * using the PyDictionary package
 * using the random package
-* getting user input 
+* getting user input
