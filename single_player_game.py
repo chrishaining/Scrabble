@@ -59,7 +59,7 @@ def play_round():
     get_word()
     if check_word_uses_tiles() == True:
         if check_word_is_valid() == True:
-            return "Your word uses the tiles and is valid. Your score is {}.".format(score_word())
+            return "Your word uses the tiles correctly and is in the dictionary. Your score is {}.".format(score_word())
         else:
             return "That word isn't in the dictionary."
     else:
