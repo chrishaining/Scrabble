@@ -34,7 +34,7 @@ assign_tiles("Player1")
 assign_tiles("Player2")
 print(player_to_letters)
 
- #creating a word (start by doing this randomly for both players. Later, the parameter player will be unnecessary)
+#creating a word (start by doing this randomly for both players. Later, the parameter player will be unnecessary)
 # This should be a random method. There are then various options on how we could do this:
 # * the program creates a random word. The only check is that it uses letters from the player's assigned letters. So, it could result in nonsense words
 # * the program could do this, along with checking that the word is in PyDictionary/other dictionary package before submitting the word. This would make it very hard to beat the computer. Alternatively, it could submit the word before checking PyDictionary. PyDictionary would then check the word (it would be much easier to beat the computer this way).
